@@ -1,0 +1,850 @@
+-- MySQL dump 10.13  Distrib 5.7.41, for Linux (x86_64)
+--
+-- Host: localhost    Database: db2
+-- ------------------------------------------------------
+-- Server version	5.7.41
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `db2`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `db2` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `db2`;
+
+--
+-- Table structure for table `auto_table`
+--
+
+DROP TABLE IF EXISTS `auto_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auto_table` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auto_table`
+--
+
+LOCK TABLES `auto_table` WRITE;
+/*!40000 ALTER TABLE `auto_table` DISABLE KEYS */;
+INSERT INTO `auto_table` VALUES (1,'张三'),(2,'李四'),(3,'王五'),(4,'赵六'),(5,'田七'),(10,'faker'),(11,'marin'),(12,'bang'),(13,'uzi');
+/*!40000 ALTER TABLE `auto_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `class_table`
+--
+
+DROP TABLE IF EXISTS `class_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `class_table` (
+  `class_id` int(10) unsigned NOT NULL COMMENT '班级ID',
+  `name` varchar(20) NOT NULL COMMENT '班级名',
+  PRIMARY KEY (`class_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `class_table`
+--
+
+LOCK TABLES `class_table` WRITE;
+/*!40000 ALTER TABLE `class_table` DISABLE KEYS */;
+INSERT INTO `class_table` VALUES (1,'计科1班'),(2,'计科2班'),(3,'计科3班');
+/*!40000 ALTER TABLE `class_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comment_form`
+--
+
+DROP TABLE IF EXISTS `comment_form`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comment_form` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nickname` varchar(20) NOT NULL,
+  `content` varchar(50) NOT NULL,
+  `sendtime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comment_form`
+--
+
+LOCK TABLES `comment_form` WRITE;
+/*!40000 ALTER TABLE `comment_form` DISABLE KEYS */;
+INSERT INTO `comment_form` VALUES (1,'张三','2023继续加油','2023-06-09 17:28:19'),(2,'李四','又是新的一天','2023-06-09 17:28:42'),(3,'王五','哈哈哈啊哈','2023-06-09 17:33:13'),(4,'赵六','uzi进场啦','2023-06-09 17:33:38'),(5,'田七','uzi收割啦','2023-06-09 17:33:59'),(6,'田va','uzi付出','2023-06-09 17:37:55');
+/*!40000 ALTER TABLE `comment_form` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comment_tb`
+--
+
+DROP TABLE IF EXISTS `comment_tb`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comment_tb` (
+  `name` varchar(20) DEFAULT NULL,
+  `content` text,
+  `rtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comment_tb`
+--
+
+LOCK TABLES `comment_tb` WRITE;
+/*!40000 ALTER TABLE `comment_tb` DISABLE KEYS */;
+INSERT INTO `comment_tb` VALUES ('chr','我觉得这件事情太酷啦','2023-05-02 13:36:10');
+/*!40000 ALTER TABLE `comment_tb` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer` (
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '客户编号',
+  `name` varchar(20) NOT NULL COMMENT '客户姓名',
+  `address` varchar(256) NOT NULL COMMENT '客户地址',
+  `email` varchar(64) NOT NULL COMMENT '客户邮箱',
+  `sex` enum('男','女') NOT NULL COMMENT '客户性别',
+  `card_id` char(10) DEFAULT NULL COMMENT '客户身份证',
+  PRIMARY KEY (`customer_id`),
+  UNIQUE KEY `card_id` (`card_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `duplicate_table`
+--
+
+DROP TABLE IF EXISTS `duplicate_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `duplicate_table` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `duplicate_table`
+--
+
+LOCK TABLES `duplicate_table` WRITE;
+/*!40000 ALTER TABLE `duplicate_table` DISABLE KEYS */;
+INSERT INTO `duplicate_table` VALUES (100,'aaa'),(200,'bbb'),(300,'ccc');
+/*!40000 ALTER TABLE `duplicate_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `exam_table`
+--
+
+DROP TABLE IF EXISTS `exam_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `exam_table` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(30) NOT NULL COMMENT '同学姓名',
+  `Chinese` float DEFAULT '0' COMMENT '语文成绩',
+  `Math` float DEFAULT '0' COMMENT '数学成绩',
+  `English` float DEFAULT '0' COMMENT '英语成绩',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `exam_table`
+--
+
+LOCK TABLES `exam_table` WRITE;
+/*!40000 ALTER TABLE `exam_table` DISABLE KEYS */;
+INSERT INTO `exam_table` VALUES (1,'唐三藏',166,89,90),(2,'猪八戒',172,109,60),(4,'刘备',182,146,40),(5,'孙权',152,126,70),(6,'曹操',140,120,85);
+/*!40000 ALTER TABLE `exam_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `for_delete`
+--
+
+DROP TABLE IF EXISTS `for_delete`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `for_delete` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `for_delete`
+--
+
+LOCK TABLES `for_delete` WRITE;
+/*!40000 ALTER TABLE `for_delete` DISABLE KEYS */;
+/*!40000 ALTER TABLE `for_delete` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `for_truncate`
+--
+
+DROP TABLE IF EXISTS `for_truncate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `for_truncate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `for_truncate`
+--
+
+LOCK TABLES `for_truncate` WRITE;
+/*!40000 ALTER TABLE `for_truncate` DISABLE KEYS */;
+/*!40000 ALTER TABLE `for_truncate` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gbk_table`
+--
+
+DROP TABLE IF EXISTS `gbk_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `gbk_table` (
+  `content` varchar(32766) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gbk_table`
+--
+
+LOCK TABLES `gbk_table` WRITE;
+/*!40000 ALTER TABLE `gbk_table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gbk_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `goods`
+--
+
+DROP TABLE IF EXISTS `goods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `goods` (
+  `goods_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '商品编号',
+  `goods_name` varchar(32) NOT NULL COMMENT '商品名称',
+  `unitprice` int(11) NOT NULL DEFAULT '0' COMMENT '商品单价',
+  `category` varchar(64) DEFAULT NULL COMMENT '商品类别',
+  `provider` varchar(64) NOT NULL COMMENT '供应商',
+  PRIMARY KEY (`goods_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `goods`
+--
+
+LOCK TABLES `goods` WRITE;
+/*!40000 ALTER TABLE `goods` DISABLE KEYS */;
+/*!40000 ALTER TABLE `goods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `id_table`
+--
+
+DROP TABLE IF EXISTS `id_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `id_table` (
+  `name` varchar(20) DEFAULT NULL,
+  `id` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `id_table`
+--
+
+LOCK TABLES `id_table` WRITE;
+/*!40000 ALTER TABLE `id_table` DISABLE KEYS */;
+INSERT INTO `id_table` VALUES ('张三',1);
+/*!40000 ALTER TABLE `id_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `myclass`
+--
+
+DROP TABLE IF EXISTS `myclass`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `myclass` (
+  `class_name` varchar(20) NOT NULL,
+  `class_room` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `myclass`
+--
+
+LOCK TABLES `myclass` WRITE;
+/*!40000 ALTER TABLE `myclass` DISABLE KEYS */;
+INSERT INTO `myclass` VALUES ('计科移动开发3班','CJ111');
+/*!40000 ALTER TABLE `myclass` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `old_duplicate_table`
+--
+
+DROP TABLE IF EXISTS `old_duplicate_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `old_duplicate_table` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `old_duplicate_table`
+--
+
+LOCK TABLES `old_duplicate_table` WRITE;
+/*!40000 ALTER TABLE `old_duplicate_table` DISABLE KEYS */;
+INSERT INTO `old_duplicate_table` VALUES (100,'aaa'),(100,'aaa'),(200,'bbb'),(200,'bbb'),(200,'bbb'),(300,'ccc');
+/*!40000 ALTER TABLE `old_duplicate_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `process_table`
+--
+
+DROP TABLE IF EXISTS `process_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `process_table` (
+  `ip` varchar(30) NOT NULL COMMENT 'IP地址',
+  `port` int(10) unsigned NOT NULL COMMENT '端口号',
+  `info` varchar(64) DEFAULT NULL COMMENT '相关信息',
+  PRIMARY KEY (`ip`,`port`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `process_table`
+--
+
+LOCK TABLES `process_table` WRITE;
+/*!40000 ALTER TABLE `process_table` DISABLE KEYS */;
+INSERT INTO `process_table` VALUES ('127.0.0.1',8080,'第一个进程'),('127.0.0.1',8082,'第一个进程'),('127.0.0.2',8080,'第一个进程');
+/*!40000 ALTER TABLE `process_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `purchase`
+--
+
+DROP TABLE IF EXISTS `purchase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `purchase` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单号',
+  `customer_id` int(11) DEFAULT NULL COMMENT '客户编号',
+  `goods_id` int(11) DEFAULT NULL COMMENT '商品编号',
+  `nums` int(11) DEFAULT '1' COMMENT '购买数量',
+  PRIMARY KEY (`order_id`),
+  KEY `customer_id` (`customer_id`),
+  KEY `goods_id` (`goods_id`),
+  CONSTRAINT `purchase_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
+  CONSTRAINT `purchase_ibfk_2` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `purchase`
+--
+
+LOCK TABLES `purchase` WRITE;
+/*!40000 ALTER TABLE `purchase` DISABLE KEYS */;
+/*!40000 ALTER TABLE `purchase` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `stu`
+--
+
+DROP TABLE IF EXISTS `stu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `stu` (
+  `id` int(10) unsigned NOT NULL COMMENT '学号',
+  `name` varchar(20) NOT NULL COMMENT '姓名',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `stu`
+--
+
+LOCK TABLES `stu` WRITE;
+/*!40000 ALTER TABLE `stu` DISABLE KEYS */;
+INSERT INTO `stu` VALUES (1,'张三');
+/*!40000 ALTER TABLE `stu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `student`
+--
+
+DROP TABLE IF EXISTS `student`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `student` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '学生的id',
+  `name` varchar(30) NOT NULL COMMENT '学生的姓名',
+  `tel` int(10) unsigned DEFAULT NULL COMMENT '学生的电话',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tel` (`tel`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student`
+--
+
+LOCK TABLES `student` WRITE;
+/*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES (1,'zhangsan',123456),(3,'ksi',NULL);
+/*!40000 ALTER TABLE `student` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `student_table`
+--
+
+DROP TABLE IF EXISTS `student_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `student_table` (
+  `stu_id` int(10) unsigned NOT NULL COMMENT '学生id',
+  `class_id` int(10) unsigned DEFAULT NULL COMMENT '学生班级id',
+  `name` varchar(20) NOT NULL COMMENT '学生的姓名',
+  PRIMARY KEY (`stu_id`),
+  KEY `class_id` (`class_id`),
+  CONSTRAINT `student_table_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class_table` (`class_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student_table`
+--
+
+LOCK TABLES `student_table` WRITE;
+/*!40000 ALTER TABLE `student_table` DISABLE KEYS */;
+INSERT INTO `student_table` VALUES (1,1,'张三'),(2,2,'李四'),(3,NULL,'王五'),(4,3,'faker');
+/*!40000 ALTER TABLE `student_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `students`
+--
+
+DROP TABLE IF EXISTS `students`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `students` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `sn` int(10) unsigned NOT NULL COMMENT '学号',
+  `name` varchar(20) NOT NULL COMMENT '姓名',
+  `qq` varchar(20) DEFAULT NULL COMMENT 'QQ',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `sn` (`sn`)
+) ENGINE=InnoDB AUTO_INCREMENT=1023 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `students`
+--
+
+LOCK TABLES `students` WRITE;
+/*!40000 ALTER TABLE `students` DISABLE KEYS */;
+INSERT INTO `students` VALUES (100,1010,'吕布',NULL),(101,1001,'唐三藏','1111'),(102,10022,'曹阿瞒',NULL),(1022,10023,'阿瞒',NULL);
+/*!40000 ALTER TABLE `students` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t1`
+--
+
+DROP TABLE IF EXISTS `t1`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t1` (
+  `num` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t1`
+--
+
+LOCK TABLES `t1` WRITE;
+/*!40000 ALTER TABLE `t1` DISABLE KEYS */;
+INSERT INTO `t1` VALUES (-128),(127),(0);
+/*!40000 ALTER TABLE `t1` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t10`
+--
+
+DROP TABLE IF EXISTS `t10`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t10` (
+  `t1` date DEFAULT NULL,
+  `t2` datetime DEFAULT NULL,
+  `t3` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t10`
+--
+
+LOCK TABLES `t10` WRITE;
+/*!40000 ALTER TABLE `t10` DISABLE KEYS */;
+INSERT INTO `t10` VALUES ('2023-05-02','2023-05-02 21:27:25','2023-05-02 13:27:57');
+/*!40000 ALTER TABLE `t10` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t2`
+--
+
+DROP TABLE IF EXISTS `t2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t2` (
+  `num` tinyint(3) unsigned DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t2`
+--
+
+LOCK TABLES `t2` WRITE;
+/*!40000 ALTER TABLE `t2` DISABLE KEYS */;
+INSERT INTO `t2` VALUES (255),(0);
+/*!40000 ALTER TABLE `t2` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t3`
+--
+
+DROP TABLE IF EXISTS `t3`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t3` (
+  `id` int(11) DEFAULT NULL,
+  `a` bit(8) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t3`
+--
+
+LOCK TABLES `t3` WRITE;
+/*!40000 ALTER TABLE `t3` DISABLE KEYS */;
+INSERT INTO `t3` VALUES (10,_binary '\n'),(65,_binary 'A');
+/*!40000 ALTER TABLE `t3` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t4`
+--
+
+DROP TABLE IF EXISTS `t4`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t4` (
+  `name` varchar(20) DEFAULT NULL COMMENT '用户名',
+  `gender` bit(1) DEFAULT NULL COMMENT '用户的性别'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t4`
+--
+
+LOCK TABLES `t4` WRITE;
+/*!40000 ALTER TABLE `t4` DISABLE KEYS */;
+INSERT INTO `t4` VALUES ('张三',_binary '\0'),('李四',_binary '');
+/*!40000 ALTER TABLE `t4` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t5`
+--
+
+DROP TABLE IF EXISTS `t5`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t5` (
+  `num` float(4,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t5`
+--
+
+LOCK TABLES `t5` WRITE;
+/*!40000 ALTER TABLE `t5` DISABLE KEYS */;
+INSERT INTO `t5` VALUES (-99.99),(0.01),(-99.99),(99.99);
+/*!40000 ALTER TABLE `t5` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t6`
+--
+
+DROP TABLE IF EXISTS `t6`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t6` (
+  `num` float(4,2) unsigned DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t6`
+--
+
+LOCK TABLES `t6` WRITE;
+/*!40000 ALTER TABLE `t6` DISABLE KEYS */;
+INSERT INTO `t6` VALUES (0.00),(99.99),(99.99);
+/*!40000 ALTER TABLE `t6` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t7`
+--
+
+DROP TABLE IF EXISTS `t7`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t7` (
+  `num1` float(10,8) DEFAULT NULL,
+  `num2` float(10,8) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t7`
+--
+
+LOCK TABLES `t7` WRITE;
+/*!40000 ALTER TABLE `t7` DISABLE KEYS */;
+INSERT INTO `t7` VALUES (23.12345695,23.12345695);
+/*!40000 ALTER TABLE `t7` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t8`
+--
+
+DROP TABLE IF EXISTS `t8`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t8` (
+  `content` char(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t8`
+--
+
+LOCK TABLES `t8` WRITE;
+/*!40000 ALTER TABLE `t8` DISABLE KEYS */;
+INSERT INTO `t8` VALUES ('hahaha'),('cheng0'),('太酷啦');
+/*!40000 ALTER TABLE `t8` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t9`
+--
+
+DROP TABLE IF EXISTS `t9`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t9` (
+  `content` varchar(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t9`
+--
+
+LOCK TABLES `t9` WRITE;
+/*!40000 ALTER TABLE `t9` DISABLE KEYS */;
+INSERT INTO `t9` VALUES ('太酷啦'),('我觉得这件事');
+/*!40000 ALTER TABLE `t9` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test`
+--
+
+DROP TABLE IF EXISTS `test`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test` (
+  `a` int(5) unsigned zerofill DEFAULT NULL,
+  `b` int(5) unsigned DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test`
+--
+
+LOCK TABLES `test` WRITE;
+/*!40000 ALTER TABLE `test` DISABLE KEYS */;
+INSERT INTO `test` VALUES (00001,1);
+/*!40000 ALTER TABLE `test` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `name` varchar(20) NOT NULL,
+  `age` tinyint(3) unsigned DEFAULT '0',
+  `sex` char(1) DEFAULT '男'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('张三',0,'男'),('李四',20,'男'),('王五',25,'女');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_table`
+--
+
+DROP TABLE IF EXISTS `user_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_table` (
+  `name` varchar(20) NOT NULL COMMENT '用户名',
+  `age` tinyint(3) unsigned DEFAULT '18' COMMENT '用户的年龄',
+  `sex` char(1) DEFAULT '男' COMMENT '用户的性别'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_table`
+--
+
+LOCK TABLES `user_table` WRITE;
+/*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `votes`
+--
+
+DROP TABLE IF EXISTS `votes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `votes` (
+  `name` varchar(20) DEFAULT NULL,
+  `gender` enum('男','女') DEFAULT NULL,
+  `hobby` set('羽毛球','篮球','足球','唱歌','跑步','敲代码') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `votes`
+--
+
+LOCK TABLES `votes` WRITE;
+/*!40000 ALTER TABLE `votes` DISABLE KEYS */;
+INSERT INTO `votes` VALUES ('张三','男','跑步'),('李四','男','唱歌,跑步,敲代码'),('李四','男','足球,唱歌,跑步,敲代码'),('王五','男','足球,唱歌,跑步,敲代码'),('高柳','女','羽毛球,足球,唱歌,敲代码'),('天齐','女','羽毛球,篮球,足球,敲代码'),('带飞','男','羽毛球,篮球,敲代码'),('打飞','女','羽毛球,篮球,敲代码'),('爱吃','女','篮球,唱歌');
+/*!40000 ALTER TABLE `votes` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-06-09 18:42:42
