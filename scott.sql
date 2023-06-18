@@ -24,6 +24,32 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `scott` /*!40100 DEFAULT CHARACTER SET 
 USE `scott`;
 
 --
+-- Table structure for table `articles`
+--
+
+DROP TABLE IF EXISTS `articles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `articles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) DEFAULT NULL,
+  `body` text,
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `title` (`title`,`body`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `articles`
+--
+
+LOCK TABLES `articles` WRITE;
+/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
+INSERT INTO `articles` VALUES (1,'MySQL Tutorial','DBMS stands for DataBase ...'),(2,'How To Use MySQL Well','After you went through a ...'),(3,'Optimizing MySQL','In this tutorial we will show ...'),(4,'1001 MySQL Tricks','1. Never run mysqld as root 2. ...'),(5,'MySQL vs. YourSQL','In the following databases comparison ...'),(6,'MySQL Security','When configured properly, MySQL...');
+/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `dept`
 --
 
@@ -62,7 +88,8 @@ CREATE TABLE `emp` (
   `hiredate` datetime DEFAULT NULL COMMENT '雇佣时间',
   `sal` decimal(7,2) DEFAULT NULL COMMENT '工资月薪',
   `comm` decimal(7,2) DEFAULT NULL COMMENT '奖金',
-  `deptno` int(2) unsigned zerofill DEFAULT NULL COMMENT '部门编号'
+  `deptno` int(2) unsigned zerofill DEFAULT NULL COMMENT '部门编号',
+  KEY `empno` (`empno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -120,6 +147,266 @@ LOCK TABLES `t1` WRITE;
 /*!40000 ALTER TABLE `t1` DISABLE KEYS */;
 /*!40000 ALTER TABLE `t1` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `age` int(11) NOT NULL,
+  `name` varchar(16) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user1`
+--
+
+DROP TABLE IF EXISTS `user1`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user1` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user1`
+--
+
+LOCK TABLES `user1` WRITE;
+/*!40000 ALTER TABLE `user1` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user1` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user10`
+--
+
+DROP TABLE IF EXISTS `user10`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user10` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `email` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user10`
+--
+
+LOCK TABLES `user10` WRITE;
+/*!40000 ALTER TABLE `user10` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user10` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user2`
+--
+
+DROP TABLE IF EXISTS `user2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user2` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user2`
+--
+
+LOCK TABLES `user2` WRITE;
+/*!40000 ALTER TABLE `user2` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user2` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user3`
+--
+
+DROP TABLE IF EXISTS `user3`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user3` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user3`
+--
+
+LOCK TABLES `user3` WRITE;
+/*!40000 ALTER TABLE `user3` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user3` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user4`
+--
+
+DROP TABLE IF EXISTS `user4`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user4` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user4`
+--
+
+LOCK TABLES `user4` WRITE;
+/*!40000 ALTER TABLE `user4` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user4` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user5`
+--
+
+DROP TABLE IF EXISTS `user5`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user5` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user5`
+--
+
+LOCK TABLES `user5` WRITE;
+/*!40000 ALTER TABLE `user5` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user5` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user6`
+--
+
+DROP TABLE IF EXISTS `user6`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user6` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user6`
+--
+
+LOCK TABLES `user6` WRITE;
+/*!40000 ALTER TABLE `user6` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user6` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user7`
+--
+
+DROP TABLE IF EXISTS `user7`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user7` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user7`
+--
+
+LOCK TABLES `user7` WRITE;
+/*!40000 ALTER TABLE `user7` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user7` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user8`
+--
+
+DROP TABLE IF EXISTS `user8`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user8` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user8`
+--
+
+LOCK TABLES `user8` WRITE;
+/*!40000 ALTER TABLE `user8` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user8` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user9`
+--
+
+DROP TABLE IF EXISTS `user9`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user9` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user9`
+--
+
+LOCK TABLES `user9` WRITE;
+/*!40000 ALTER TABLE `user9` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user9` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -130,4 +417,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-11 15:49:58
+-- Dump completed on 2023-06-18 11:32:50
